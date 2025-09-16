@@ -135,8 +135,8 @@
                     
                     switch($page) {
                         case 'guru':
-                            if(file_exists('guru.php')) {
-                                include 'guru.php';
+                            if(file_exists('admin/guru.php')) {
+                                include 'admin/guru.php';
                             } else {
                                 echo '<div class="error-message">File guru.php tidak ditemukan</div>';
                             }
@@ -149,8 +149,8 @@
                             }
                             break;
                         case 'jurusan':
-                            if(file_exists('jurusan.php')) {
-                                include 'jurusan.php';
+                            if(file_exists('admin/jurusan.php')) {
+                                include 'admin/jurusan.php';
                             } else {
                                 echo '<div class="error-message">File jurusan.php tidak ditemukan</div>';
                             }
