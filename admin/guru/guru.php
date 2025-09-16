@@ -36,7 +36,7 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
-        <a href="jurusan_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
+        <a href="admin/guru/guru_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
     </div>
 
     <table class="table">
@@ -65,7 +65,7 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
                     <td><?= $row['username'] ?></td>
                     <td>
                         <a href="jurusan_edit.php?id=<?= $row['id_guru'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="jurusan_hapus.php?id=<?= $row['id_guru'] ?>" 
+                        <a href="guru_hapus.php?id=<?= $row['id_guru'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>
