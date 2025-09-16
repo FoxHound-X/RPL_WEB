@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "../../koneksi.php";
 if (!isset($_GET['id'])) {
     header("Location: index.php?page=jurusan");
     exit;
@@ -24,11 +24,11 @@ if (isset($_POST['update'])) {
     <form method="post">
         <div class="mb-3">
             <label class="form-label">Nama Jurusan</label>
-            <input type="text" name="nama_jurusan" class="form-control" value="<?= $data['nama_jurusan'] ?>" required>
+            <input type="text" name="nama_jurusan" class="form-control" value="<?= $data['nama_guru'] ?>" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Singkatan</label>
-            <input type="text" name="singkatan" maxlength="5" class="form-control" value="<?= $data['singkatan'] ?>" required>
+            <input type="text" name="singkatan" maxlength="5" class="form-control" value="<?= $data['nama_guru'] ?>" required>
         </div>
         <button type="submit" name="update" class="btn btn-success">Update</button>
         <a href="index.php?page=jurusan" class="btn btn-secondary">Kembali</a>

@@ -64,8 +64,8 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
                     <td><?= $row['telp'] ?></td>
                     <td><?= $row['username'] ?></td>
                     <td>
-                        <a href="jurusan_edit.php?id=<?= $row['id_guru'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="guru_hapus.php?id=<?= $row['id_guru'] ?>" 
+                        <a href="admin/guru/guru_edit.php?id=<?= $row['id_guru'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/guru/guru_hapus.php?id=<?= $row['id_guru'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>

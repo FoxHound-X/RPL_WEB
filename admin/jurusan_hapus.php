@@ -1,5 +1,6 @@
 <?php
-include "koneksi.php";
+include("../koneksi.php");
+
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -9,10 +10,10 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $stmt->close();
 
-    header("Location: index.php?page=jurusan&pesan=hapus");
+    header("Location: ../index.php?page=jurusan&pesan=hapus");
     exit;
 } else {
-    header("Location: index.php?page=jurusan");
+    header("Location: ../index.php?page=jurusan");
     exit;
 }
 
