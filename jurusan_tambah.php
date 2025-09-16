@@ -1,5 +1,5 @@
 <?php
-include "../koneksi.php";
+include "koneksi.php";
 if (isset($_POST['simpan'])) {
     $nama_jurusan = $_POST['nama_jurusan'];
     $singkatan    = $_POST['singkatan'];

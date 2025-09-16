@@ -1,15 +1,6 @@
 <?php
 // koneksi ke database
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "ssribase"; // sesuai database kamu
-
-$koneksi = mysqli_connect($host, $user, $pass, $db);
-
-if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
+include("koneksi.php");
 
 // query ambil data
 $query = "SELECT nama_pegawai, tgl_lahir, alamat FROM pegawai";
