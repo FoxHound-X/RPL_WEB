@@ -142,8 +142,8 @@
                             }
                             break;
                         case 'pegawai':
-                            if(file_exists('pegawai.php')) {
-                                include 'pegawai.php';
+                            if(file_exists('admin/pegawai/pegawai.php')) {
+                                include 'admin/pegawai/pegawai.php';
                             } else {
                                 echo '<div class="error-message">File pegawai.php tidak ditemukan</div>';
                             }

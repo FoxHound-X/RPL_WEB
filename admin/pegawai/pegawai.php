@@ -5,18 +5,18 @@ include("koneksi.php");
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "SELECT * FROM guru 
-                                      WHERE nama_guru LIKE '%$cari%' 
+    $result = mysqli_query($koneksi, "SELECT * FROM pegawai 
+                                      WHERE nama_pegawai LIKE '%$cari%' 
                                          OR username LIKE '%$cari%' 
-                                      ORDER BY id_guru DESC");
+                                      ORDER BY id_pegawai DESC");
 } else {
-    $result = mysqli_query($koneksi, "SELECT * FROM guru ORDER BY id_guru DESC");
+    $result = mysqli_query($koneksi, "SELECT * FROM pegawai ORDER BY id_pegawai DESC");
 }
 ?>
 
-<!-- jurusan.php -->
+<!-- pegawai.php -->
 <div class="card">
-    <h2>📚 Data Guru</h2>
+    <h2>📚 Data Pegawai SSRI</h2>
 
     <!-- Notifikasi -->
     <?php if (isset($_GET['pesan'])): ?>
@@ -32,18 +32,18 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
     <!-- Pencarian + Tombol Tambah -->
     <div class="search-add">
         <form method="get" action="">
-            <input type="hidden" name="page" value="guru">
+            <input type="hidden" name="page" value="pegawai">
             <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
-        <a href="admin/guru/guru_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
+        <a href="admin/pegawai/pegawai_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
     </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Guru</th>
+                <th>Nama Pegawai</th>
                 <th>TGL Lahir</th>
                 <th>Alamat</th>
                 <th>TELP</th>
@@ -58,14 +58,14 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row['nama_guru'] ?></td>
+                    <td><?= $row['nama_pegawai'] ?></td>
                     <td><?= $row['tgl_lahir'] ?></td>
-                    <td><?= $row['almat'] ?></td>
+                    <td><?= $row['alamat'] ?></td>
                     <td><?= $row['telp'] ?></td>
                     <td><?= $row['username'] ?></td>
                     <td>
-                        <a href="admin/guru/guru_edit.php?id=<?= $row['id_guru'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="admin/guru/guru_hapus.php?id=<?= $row['id_guru'] ?>" 
+                        <a href="admin/pegawai/pegawai_edit.php?id=<?= $row['id_pegawai'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/pegawai/pegawai_hapus.php?id=<?= $row['id_pegawai'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>
