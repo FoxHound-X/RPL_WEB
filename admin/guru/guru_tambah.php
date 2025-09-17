@@ -107,7 +107,7 @@ if (isset($_POST['simpan'])) {
                 </div>
                 
                 <div class="form-actions">
-                    <a href="index.php?page=guru" class="btn btn-secondary">
+                    <a href="../../index.php?page=guru" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i>
                         Kembali
                     </a>
