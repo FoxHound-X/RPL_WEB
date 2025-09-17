@@ -3,35 +3,35 @@ include "../../koneksi.php";
 
 // Cek jika parameter ID tidak ada
 if (!isset($_GET['id'])) {
-    header("Location: ../../index.php?page=guru&pesan=error");
+    header("Location: ../../index.php?page=pegawai&pesan=error");
     exit;
 }
 
 $id = $_GET['id'];
 
-// Ambil data guru dari database
-$data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM guru WHERE id_guru = $id"));
+// Ambil data Pegawai dari database
+$data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM pegawai WHERE id_pegawai = $id"));
 
 // Proses saat form disubmit
 if (isset($_POST['update'])) {
-    $nama_guru = $_POST['nama_guru'];
+    $nama_pegawai = $_POST['nama_pegawai'];
     $tgl_lahir = $_POST['tgl_lahir'];
-    $almat     = $_POST['almat'];
+    $alamat     = $_POST['alamat'];
     $telp      = $_POST['telp'];
     $username  = $_POST['username'];
     $password  = $_POST['password'];
 
-    mysqli_query($koneksi, "UPDATE guru SET 
-        nama_guru = '$nama_guru',
+    mysqli_query($koneksi, "UPDATE Pegawai SET 
+        nama_pegawai = '$nama_pegawai',
         tgl_lahir = '$tgl_lahir',
-        almat = '$almat',
+        alamat = '$alamat',
         telp = '$telp',
         username = '$username',
         password = '$password'
-        WHERE id_guru = $id
+        WHERE id_pegawai = $id
     ");
 
-    header("Location: ../../index.php?page=guru&pesan=update");
+    header("Location: ../../index.php?page=pegawai&pesan=update");
     exit;
 }
 ?>
@@ -41,20 +41,20 @@ if (isset($_POST['update'])) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Data Guru</title>
+    <title>Edit Data Pegawai</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
     <div class="container py-5">
         <div class="card shadow">
             <div class="card-header bg-primary text-white">
-                <h4>Edit Data Guru</h4>
+                <h4>Edit Data Pegawai</h4>
             </div>
             <div class="card-body">
                 <form method="post">
                     <div class="mb-3">
-                        <label>Nama Guru</label>
-                        <input type="text" name="nama_guru" class="form-control" value="<?= $data['nama_guru'] ?>" required>
+                        <label>Nama Pegawai</label>
+                        <input type="text" name="nama_pegawai" class="form-control" value="<?= $data['nama_pegawai'] ?>" required>
                     </div>
                     <div class="mb-3">
                         <label>Tanggal Lahir</label>
@@ -77,7 +77,7 @@ if (isset($_POST['update'])) {
                         <input type="text" name="password" class="form-control" value="<?= $data['password'] ?>" required>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="../../index.php?page=guru" class="btn btn-secondary">Kembali</a>
+                        <a href="../../index.php?page=Pegawai" class="btn btn-secondary">Kembali</a>
                         <button type="submit" name="update" class="btn btn-success">Update</button>
                     </div>
                 </form>

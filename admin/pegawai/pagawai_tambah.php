@@ -1,15 +1,15 @@
 <?php
 include "../../koneksi.php";
 if (isset($_POST['simpan'])) {
-    $nama_guru = $_POST['nama_guru'];
+    $nama_pegawai = $_POST['nama_pegawai'];
     $tgl_lahir    = $_POST['tgl_lahir'];
-    $almat    = $_POST['almat'];
+    $alamat    = $_POST['alamat'];
     $telp    = $_POST['telp'];
     $username    = $_POST['username'];
     $password    = $_POST['password'];
 
-    mysqli_query($koneksi, "INSERT INTO guru (nama_guru, tgl_lahir, almat, telp, username, password) VALUES ('$nama_guru','$tgl_lahir','$almat','$telp','$username','$password')");
-    header("Location: ../../index.php?page=guru&pesan=tambah");
+    mysqli_query($koneksi, "INSERT INTO pegawai (nama_pegawai, tgl_lahir, alamat, telp, username, password) VALUES ('$nama_pegawai','$tgl_lahir','$alamat','$telp','$username','$password')");
+    header("Location: ../../index.php?page=pegawai&pesan=tambah");
     exit;
 }
 ?>
@@ -19,7 +19,7 @@ if (isset($_POST['simpan'])) {
         <div class="form-header">
             <h2>
                 <i class="fas fa-user-plus"></i>
-                Tambah Data Guru
+                Tambah Data Pegawai
             </h2>
         </div>
         
@@ -28,12 +28,12 @@ if (isset($_POST['simpan'])) {
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label">
-                            <i class="fas fa-user"></i> Nama Guru
+                            <i class="fas fa-user"></i> Nama Pegawai
                         </label>
                         <div class="input-group">
                             <i class="fas fa-user"></i>
                             <input type="text" 
-                                   name="nama_guru" 
+                                   name="nama_pegawai" 
                                    class="form-input" 
                                    placeholder="Masukkan nama lengkap" 
                                    required>
@@ -57,7 +57,7 @@ if (isset($_POST['simpan'])) {
                         <label class="form-label">
                             <i class="fas fa-map-marker-alt"></i> Alamat
                         </label>
-                        <textarea name="almat" 
+                        <textarea name="alamat" 
                                   class="form-input form-textarea" 
                                   placeholder="Masukkan alamat lengkap" 
                                   required></textarea>
@@ -107,7 +107,7 @@ if (isset($_POST['simpan'])) {
                 </div>
                 
                 <div class="form-actions">
-                    <a href="../../index.php?page=guru" class="btn btn-secondary">
+                    <a href="../../index.php?page=pegawai" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i>
                         Kembali
                     </a>

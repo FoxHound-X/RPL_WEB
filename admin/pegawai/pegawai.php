@@ -22,9 +22,9 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
     <?php if (isset($_GET['pesan'])): ?>
         <div class="alert alert-success">
             <?php 
-            if ($_GET['pesan'] == 'tambah') echo "✅ Data Guru berhasil ditambahkan!";
-            if ($_GET['pesan'] == 'edit') echo "✅ Data Guru berhasil diperbaharui!";
-            if ($_GET['pesan'] == 'hapus') echo "✅ Data Guru berhasil dihapus!";
+            if ($_GET['pesan'] == 'tambah') echo "✅ Data Pegawai berhasil ditambahkan!";
+            if ($_GET['pesan'] == 'edit') echo "✅ Data Pegawai berhasil diperbaharui!";
+            if ($_GET['pesan'] == 'hapus') echo "✅ Data Pegawai berhasil dihapus!";
             ?>
         </div>
     <?php endif; ?>
@@ -36,7 +36,7 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
-        <a href="admin/pegawai/pegawai_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
+        <a href="admin/pegawai/pagawai_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Nama</a>
     </div>
 
     <table class="table">
