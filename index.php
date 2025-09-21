@@ -156,15 +156,15 @@
                             }
                             break;
                         case 'siswa':
-                            if(file_exists('siswa.php')) {
-                                include 'siswa.php';
+                            if(file_exists('admin/siswa/siswa.php')) {
+                                include 'admin/siswa/siswa.php';
                             } else {
                                 echo '<div class="error-message">File siswa.php tidak ditemukan</div>';
                             }
                             break;
                         case 'kelas':
-                            if(file_exists('kelas.php')) {
-                                include 'kelas.php';
+                            if(file_exists('admin/kelas/kelas.php')) {
+                                include 'admin/kelas/kelas.php';
                             } else {
                                 echo '<div class="error-message">File kelas.php tidak ditemukan</div>';
                             }
