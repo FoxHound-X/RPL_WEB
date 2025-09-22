@@ -114,16 +114,6 @@ $sql = "INSERT INTO siswa (nama_siswa, no_absen, tgl_lahir, alamat, telp, id_kel
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">
-                            <i class="fas fa-phone"></i>NIS
-                        </label>
-                        <div class="input-group">
-                            <i class="fas fa-phone"></i>
-                            <input type="number" name="nis" class="form-input" placeholder="Masukkan NIS" required>
-                        </div>
-                    </div>
-
                     <!-- Kelas Dropdown -->
                     <div class="form-group">
                         <label class="form-label">
