@@ -84,6 +84,12 @@ session_start();
                         </a>
                     </li>
                     <li>
+                        <a href="?page=impordata">
+                            <i class="fas fa-cog"></i>
+                            <span>Impor Data</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="logout.php" class="logout">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
@@ -114,6 +120,7 @@ session_start();
                                 case 'mpk': echo 'mpk'; break;
                                 case 'pembayaran': echo 'pembayaran'; break;
                                 case 'settings': echo 'Pengaturan'; break;
+                                case 'impordata': echo 'Impor Data'; break;
                                 default: echo 'Dashboard';
                             }
                         ?>
@@ -195,6 +202,13 @@ session_start();
                                 include 'mata_pelajaran.php';
                             } else {
                                 echo '<div class="error-message">File pembayaran.php tidak ditemukan</div>';
+                            }
+                            break;
+                        case 'impordata':
+                            if(file_exists('admin/impordata/impor.php')) {
+                                include 'admin/impordata/impor.php';
+                            } else {
+                                echo '<div class="error-message">File impor.php tidak ditemukan</div>';
                             }
                             break;
                         case 'settings':
