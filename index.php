@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,7 +19,7 @@
             <div class="sidebar-header">
                 <div class="logo">
                     <i class="fas fa-graduation-cap"></i>
-                    <span>EduAdmin</span>
+                    <span>SMKN 1 Sukawati</span>
                 </div>
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-times"></i>
@@ -44,7 +48,7 @@
                     </li>
                     <li>
                         <a href="?page=jurusan">
-                            <i class="fas fa-book"></i>
+                            <i class="fa-solid fa-book-open-reader"></i>
                             <span>Data Jurusan</span>
                         </a>
                     </li>
@@ -61,9 +65,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="?page=mata_pelajaran">
+                        <a href="?page=mpk">
+                            <i class="fa-solid fa-user"></i>
+                            <span>MPK</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?page=pembayaran">
                             <i class="fas fa-clipboard-list"></i>
-                            <span>Mata Pelajaran</span>
+                            <span>pembayaran</span>
                         </a>
                     </li>
                     <li class="separator"></li>
@@ -101,7 +111,8 @@
                                 case 'jurusan': echo 'Data Jurusan'; break;
                                 case 'siswa': echo 'Data Siswa'; break;
                                 case 'kelas': echo 'Data Kelas'; break;
-                                case 'mata_pelajaran': echo 'Mata Pelajaran'; break;
+                                case 'mpk': echo 'mpk'; break;
+                                case 'pembayaran': echo 'pembayaran'; break;
                                 case 'settings': echo 'Pengaturan'; break;
                                 default: echo 'Dashboard';
                             }
@@ -118,8 +129,12 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Administrator</span>
-                            <span class="user-role">Super Admin</span>
+                            <span class="user-name">
+                                <?php 
+                                echo isset($_SESSION['nama_pegawai']) ? htmlspecialchars($_SESSION['nama_pegawai']) : 'Administrator'; 
+                                ?>
+                            </span> 
+                            <span class="user-role">SMKN1 Sukawati</span>
                         </div>
                         <div class="dropdown-arrow">
                             <i class="fas fa-chevron-down"></i>
@@ -127,7 +142,6 @@
                     </div>
                 </div>
             </header>
-
             <!-- Content Area -->
             <div class="content">
                 <?php
@@ -169,11 +183,18 @@
                                 echo '<div class="error-message">File kelas.php tidak ditemukan</div>';
                             }
                             break;
-                        case 'mata_pelajaran':
-                            if(file_exists('mata_pelajaran.php')) {
+                        case 'mpk':
+                            if(file_exists('mpk.php')) {
+                                include 'mpk.php';
+                            } else {
+                                echo '<div class="error-message">File mpk.php tidak ditemukan</div>';
+                            }
+                            break;                        
+                        case 'pembayaran':
+                            if(file_exists('pembayaran.php')) {
                                 include 'mata_pelajaran.php';
                             } else {
-                                echo '<div class="error-message">File mata_pelajaran.php tidak ditemukan</div>';
+                                echo '<div class="error-message">File pembayaran.php tidak ditemukan</div>';
                             }
                             break;
                         case 'settings':

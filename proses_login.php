@@ -1,9 +1,10 @@
 <?php 
 session_start();
+
 include "koneksi.php";
 
 $username = $_POST['username'];
-$password = md5($_POST['password']); // hashing md5 (sebaiknya gunakan password_hash untuk keamanan lebih)
+$password = ($_POST['password']); // hashing md5 (sebaiknya gunakan password_hash untuk keamanan lebih)
 
 // query cek data
 $sql = "SELECT * FROM pegawai WHERE username='$username' AND password='$password'";

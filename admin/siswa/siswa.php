@@ -5,9 +5,9 @@ include("koneksi.php");
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "SELECT * FROM siswa 
+    $result = mysqli_query($koneksi, "SELECT * FROM siswa
                                       WHERE nama_siswa LIKE '%$cari%' 
-                                         OR username LIKE '%$cari%' 
+                                         OR nis LIKE '%$cari%' 
                                       ORDER BY id_siswa DESC");
 } else {
     $result = mysqli_query($koneksi, "SELECT * FROM siswa ORDER BY id_siswa DESC");
@@ -32,7 +32,7 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
     <!-- Pencarian + Tombol Tambah -->
     <div class="search-add">
         <form method="get" action="">
-            <input type="hidden" name="page" value="guru">
+            <input type="hidden" name="page" value="siswa">
             <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
@@ -44,12 +44,12 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             <tr>
                 <th>No</th>
                 <th>Nama Siswa</th>
+                <th>No Absen</th>
                 <th>TGL Lahir</th>
                 <th>Alamat</th>
                 <th>TELP</th>
-                <th>TELP</th>
-                <th>TELP</th>
-                <th>Username</th>
+                <th>NIS</th>
+                <th>NISN</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -60,14 +60,16 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row['nama_guru'] ?></td>
+                    <td><?= $row['nama_siswa'] ?></td>
+                    <td><?= $row['no_absen'] ?></td>
                     <td><?= $row['tgl_lahir'] ?></td>
-                    <td><?= $row['almat'] ?></td>
+                    <td><?= $row['alamat'] ?></td>
                     <td><?= $row['telp'] ?></td>
-                    <td><?= $row['username'] ?></td>
+                    <td><?= $row['nis'] ?></td>
+                    <td><?= $row['nisn'] ?></td>
                     <td>
-                        <a href="admin/guru/guru_edit.php?id=<?= $row['id_guru'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="admin/guru/guru_hapus.php?id=<?= $row['id_guru'] ?>" 
+                        <a href="admin/siswa/siswa_hapus.php?id=<?= $row['id_siswa'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/siswa/siswa_hapus.php?id=<?= $row['id_siswa'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>

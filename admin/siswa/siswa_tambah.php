@@ -10,19 +10,24 @@ if (!$query_kelas) {
 // Proses simpan
 if (isset($_POST['simpan'])) {
     $nama_siswa = $_POST['nama_siswa'];
+    $no_absen   = $_POST['no_absen'];
     $tgl_lahir  = $_POST['tgl_lahir'];
     $alamat     = $_POST['alamat'];
     $telp       = $_POST['telp'];
-    $id_kelas   = $_POST['id_kelas'];
-    $username   = $_POST['username'];
-    $password   = $_POST['password'];
+    $id_kelas   = $_POST['id_kelas'];  // foreign key dari dropdown
+    $nis        = $_POST['nis'] ?? null;
+    $nisn       = $_POST['nisn'] ?? null;
 
-    mysqli_query($koneksi, "INSERT INTO siswa (nama_siswa, tgl_lahir, alamat, telp, id_kelas, username, password) 
-                            VALUES ('$nama_siswa','$tgl_lahir','$alamat','$telp','$id_kelas','$username','$password')");
+    // Simpan data ke tabel siswa, id_kelas sebagai foreign key
+$sql = "INSERT INTO siswa (nama_siswa, no_absen, tgl_lahir, alamat, telp, id_kelas, nis, nisn) 
+        VALUES ('$nama_siswa', '$no_absen', '$tgl_lahir', '$alamat', '$telp', '$id_kelas', '$nis', '$nisn')";
+
+    mysqli_query($koneksi, $sql) or die("Error query: " . mysqli_error($koneksi));
 
     header("Location: ../../index.php?page=siswa&pesan=tambah");
     exit;
 }
+
 ?>
 
 <div class="form-container">
@@ -78,6 +83,47 @@ if (isset($_POST['simpan'])) {
                         </div>
                     </div>
 
+                    <!-- No. Abasen -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i> No. Absen
+                        </label>
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="number" name="no_absen" class="form-input" placeholder="Masukkan nomor Absen" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i>NIS
+                        </label>
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="number" name="nis" class="form-input" placeholder="Masukkan NIS" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i>NISN
+                        </label>
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="number" name="nisn" class="form-input" placeholder="Masukkan NISN" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-phone"></i>NIS
+                        </label>
+                        <div class="input-group">
+                            <i class="fas fa-phone"></i>
+                            <input type="number" name="nis" class="form-input" placeholder="Masukkan NIS" required>
+                        </div>
+                    </div>
+
                     <!-- Kelas Dropdown -->
                     <div class="form-group">
                         <label class="form-label">
@@ -94,27 +140,6 @@ if (isset($_POST['simpan'])) {
                         </div>
                     </div>
 
-                    <!-- Username -->
-                    <div class="form-group">
-                        <label class="form-label">
-                            <i class="fas fa-user-circle"></i> Username
-                        </label>
-                        <div class="input-group">
-                            <i class="fas fa-user-circle"></i>
-                            <input type="text" name="username" class="form-input" placeholder="Masukkan username" required>
-                        </div>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="form-group">
-                        <label class="form-label">
-                            <i class="fas fa-lock"></i> Password
-                        </label>
-                        <div class="input-group">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" name="password" class="form-input" placeholder="Masukkan password" required>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Tombol -->
@@ -137,25 +162,24 @@ if (isset($_POST['simpan'])) {
 
 
 <style>
-/* Modern form styles that match your dashboard */
 .form-container {
-    padding: 2rem;
-    max-width: 800px;
+    padding: 2rem 1rem;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 .form-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
     overflow: hidden;
-    border: 1px solid #e5e7eb;
 }
 
 .form-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 1.5rem 2rem;
-    color: white;
+    color: #fff;
 }
 
 .form-header h2 {
@@ -167,16 +191,13 @@ if (isset($_POST['simpan'])) {
     gap: 0.75rem;
 }
 
-.form-header i {
-    font-size: 1.25rem;
-}
-
 .form-body {
     padding: 2rem;
 }
 
 .form-grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
@@ -185,142 +206,47 @@ if (isset($_POST['simpan'])) {
     flex-direction: column;
 }
 
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
 .form-label {
-    font-weight: 500;
-    color: #374151;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 0.5rem;
     font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
 }
 
 .form-input {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e5e7eb;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1.8px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    transition: all 0.2s ease;
     background: #fafafa;
+    transition: border-color 0.3s ease;
+    position: relative;
 }
 
 .form-input:focus {
     outline: none;
     border-color: #667eea;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
 .form-input::placeholder {
-    color: #9ca3af;
+    color: #999;
 }
 
 .form-textarea {
-    min-height: 100px;
+    min-height: 110px;
     resize: vertical;
+    padding-left: 1rem;
 }
 
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e5e7eb;
-}
-
-.btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-    font-size: 0.875rem;
-}
-
-.btn-secondary {
-    background: #6b7280;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #4b5563;
-    transform: translateY(-1px);
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .form-container {
-        padding: 1rem;
-    }
-    
-    .form-header {
-        padding: 1rem 1.5rem;
-    }
-    
-    .form-header h2 {
-        font-size: 1.25rem;
-    }
-    
-    .form-body {
-        padding: 1.5rem;
-    }
-    
-    .form-actions {
-        flex-direction: column-reverse;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-container {
-        padding: 0.5rem;
-    }
-    
-    .form-header {
-        padding: 1rem;
-    }
-    
-    .form-body {
-        padding: 1rem;
-    }
-    
-    .form-header h2 {
-        font-size: 1.125rem;
-    }
-}
-
-/* Grid layout for larger screens */
-@media (min-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .form-group.full-width {
-        grid-column: 1 / -1;
-    }
-}
-
-/* Input icons */
 .input-group {
     position: relative;
 }
@@ -330,11 +256,64 @@ if (isset($_POST['simpan'])) {
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #9ca3af;
-    z-index: 1;
+    color: #999;
+    pointer-events: none;
 }
 
-.input-group .form-input {
-    padding-left: 2.5rem;
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    flex-wrap: wrap;
 }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 </style>
