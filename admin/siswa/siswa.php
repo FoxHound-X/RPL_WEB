@@ -62,13 +62,13 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
                     <td><?= $no++ ?></td>
                     <td><?= $row['nama_siswa'] ?></td>
                     <td><?= $row['no_absen'] ?></td>
-                    <td><?= $row['tgl_lahir'] ?></td>
+                    <td><?= $row['tgl_lahir'] ?></td>   
                     <td><?= $row['alamat'] ?></td>
                     <td><?= $row['telp'] ?></td>
                     <td><?= $row['nis'] ?></td>
                     <td><?= $row['nisn'] ?></td>
                     <td>
-                        <a href="admin/siswa/siswa_hapus.php?id=<?= $row['id_siswa'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/siswa/siswa_edit.php?id=<?= $row['id_siswa'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
                         <a href="admin/siswa/siswa_hapus.php?id=<?= $row['id_siswa'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>

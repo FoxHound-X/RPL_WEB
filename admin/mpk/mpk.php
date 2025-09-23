@@ -5,38 +5,23 @@ include("koneksi.php");
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "
-        SELECT kelas.nama_kelas, guru.nama_guru, jurusan.nama_jurusan
-        FROM kelas
-        JOIN guru ON kelas.id_guru = guru.id_guru
-        JOIN jurusan ON kelas.id_jurusan = jurusan.id_jurusan
-        WHERE kelas.nama_kelas LIKE '%$cari%'
-           OR guru.nama_guru LIKE '%$cari%'
-           OR jurusan.nama_jurusan LIKE '%$cari%'
-        ORDER BY kelas.id_kelas DESC
-    ");
+    $result = mysqli_query($koneksi, "SELECT *");
 } else {
-    $result = mysqli_query($koneksi, "
-        SELECT kelas.nama_kelas, guru.nama_guru, jurusan.nama_jurusan
-        FROM kelas
-        JOIN guru ON kelas.id_guru = guru.id_guru
-        JOIN jurusan ON kelas.id_jurusan = jurusan.id_jurusan
-        ORDER BY kelas.id_kelas DESC
-    ");
+    $result = mysqli_query($koneksi, "SELECT * FROM jurusan ORDER BY id_jurusan DESC");
 }
 ?>
 
-<!-- kelas.php -->
+<!-- jurusan.php -->
 <div class="card">
-    <h2>🏫 Data Kelas</h2>
+    <h2>📚 Data Jurusan</h2>
 
     <!-- Notifikasi -->
     <?php if (isset($_GET['pesan'])): ?>
         <div class="alert alert-success">
             <?php 
-            if ($_GET['pesan'] == 'tambah') echo "✅ Data kelas berhasil ditambahkan!";
-            if ($_GET['pesan'] == 'edit') echo "✅ Data kelas berhasil diperbaharui!";
-            if ($_GET['pesan'] == 'hapus') echo "✅ Data kelas berhasil dihapus!";
+            if ($_GET['pesan'] == 'tambah') echo "✅ Data jurusan berhasil ditambahkan!";
+            if ($_GET['pesan'] == 'edit') echo "✅ Data jurusan berhasil diperbaharui!";
+            if ($_GET['pesan'] == 'hapus') echo "✅ Data jurusan berhasil dihapus!";
             ?>
         </div>
     <?php endif; ?>
@@ -44,20 +29,19 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
     <!-- Pencarian + Tombol Tambah -->
     <div class="search-add">
         <form method="get" action="">
-            <input type="hidden" name="page" value="kelas">
-            <input type="text" name="cari" placeholder="Cari kelas/guru/jurusan..." value="<?= htmlspecialchars($cari) ?>">
+            <input type="hidden" name="page" value="jurusan">
+            <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
-        <a href="admin/kelas/kelas_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Kelas</a>
+        <a href="admin/jurusan_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Jurusan</a>
     </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Kelas</th>
-                <th>Nama Guru</th>
-                <th>Jurusan</th>
+                <th>Nama Jurusan</th>
+                <th>Singkatan</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -68,12 +52,11 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row['nama_kelas'] ?></td>
-                    <td><?= $row['nama_guru'] ?></td>
                     <td><?= $row['nama_jurusan'] ?></td>
+                    <td><?= $row['singkatan'] ?></td>
                     <td>
-                        <a href="admin/kelas/kelas_edit.php?id=<?= $row['nama_kelas'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="admin/kelas/kelas_hapus.php?id=<?= $row['nama_kelas'] ?>" 
+                        <a href="admin/jurusan_edit.php?id=<?= $row['id_jurusan'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/jurusan_hapus.php?id=<?= $row['id_jurusan'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>

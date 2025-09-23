@@ -12,7 +12,7 @@ if (isset($_POST['simpan'])) {
     $query = mysqli_query($koneksi, $sql);
 
     if ($query) {
-        echo "<script>alert('Data kelas berhasil ditambahkan');window.location='kelas.php';</script>";
+        echo "<script>alert('Data kelas berhasil ditambahkan');window.location='../../index.php?page=kelas&pesan=tambah';</script>";
     } else {
         echo "<script>alert('Gagal menambahkan data: " . mysqli_error($koneksi) . "');</script>";
     }
