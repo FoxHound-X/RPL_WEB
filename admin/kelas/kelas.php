@@ -1,28 +1,14 @@
 <?php
-include("koneksi.php");
-
 // Cek apakah ada pencarian
+include "koneksi.php";
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "
-        SELECT kelas.nama_kelas, guru.nama_guru, jurusan.nama_jurusan
-        FROM kelas
-        JOIN guru ON kelas.id_guru = guru.id_guru
-        JOIN jurusan ON kelas.id_jurusan = jurusan.id_jurusan
-        WHERE kelas.nama_kelas LIKE '%$cari%'
-           OR guru.nama_guru LIKE '%$cari%'
-           OR jurusan.nama_jurusan LIKE '%$cari%'
-        ORDER BY kelas.id_kelas DESC
-    ");
+    $result = mysqli_query($koneksi, "SELECT * FROM kelas,jurusan,guru
+                                      WHERE kelas.id_jurusan=jurusan.id_jurusan AND kelas.id_guru=guru.Id_guru AND nama_kelas LIKE '%$cari%'  
+                                      ORDER BY id_kelas DESC");
 } else {
-    $result = mysqli_query($koneksi, "
-        SELECT kelas.nama_kelas, guru.nama_guru, jurusan.nama_jurusan
-        FROM kelas
-        JOIN guru ON kelas.id_guru = guru.id_guru
-        JOIN jurusan ON kelas.id_jurusan = jurusan.id_jurusan
-        ORDER BY kelas.id_kelas DESC
-    ");
+    $result = mysqli_query($koneksi, "SELECT * FROM kelas,jurusan,guru  WHERE kelas.id_jurusan=jurusan.id_jurusan AND kelas.id_guru=guru.Id_guru ORDER BY id_kelas DESC");
 }
 ?>
 
@@ -72,8 +58,8 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
                     <td><?= $row['nama_guru'] ?></td>
                     <td><?= $row['nama_jurusan'] ?></td>
                     <td>
-                        <a href="admin/kelas/kelas_edit.php?id=<?= $row['nama_kelas'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="admin/kelas/kelas_hapus.php?id=<?= $row['nama_kelas'] ?>" 
+                        <a href="admin/kelas/kelas_edit.php?id=<?= $row['id_kelas'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/kelas/kelas_hapus.php?id=<?= $row['id_kelas'] ?>" 
                            class="btn-delete" 
                            onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
                     </td>
