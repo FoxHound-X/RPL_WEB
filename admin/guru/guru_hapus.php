@@ -10,10 +10,10 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $stmt->close();
 
-    header("Location: ../../index.php?page=guru&pesan=hapus");
+    header("Location: ../../dashboard.php?page=guru&pesan=hapus");
     exit;
 } else {
-    header("Location: ../../index.php?page=guru&pesan=hapus");
+    header("Location: ../../dashboard.php?page=guru&pesan=hapus");
     exit;
 }
 

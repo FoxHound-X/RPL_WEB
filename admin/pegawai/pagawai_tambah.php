@@ -9,7 +9,7 @@ if (isset($_POST['simpan'])) {
     $password    = $_POST['password'];
 
     mysqli_query($koneksi, "INSERT INTO pegawai (nama_pegawai, tgl_lahir, alamat, telp, username, password) VALUES ('$nama_pegawai','$tgl_lahir','$alamat','$telp','$username','$password')");
-    header("Location: ../../index.php?page=pegawai&pesan=tambah");
+    header("Location: ../../dashboard.php?page=pegawai&pesan=tambah");
     exit;
 }
 ?>
@@ -107,7 +107,7 @@ if (isset($_POST['simpan'])) {
                 </div>
                 
                 <div class="form-actions">
-                    <a href="../../index.php?page=pegawai" class="btn btn-secondary">
+                    <a href="../../dashboard.php?page=pegawai" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i>
                         Kembali
                     </a>

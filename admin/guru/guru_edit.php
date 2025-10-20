@@ -3,7 +3,7 @@ include "../../koneksi.php";
 
 // Cek jika parameter ID tidak ada
 if (!isset($_GET['id'])) {
-    header("Location: ../../index.php?page=guru&pesan=error");
+    header("Location: ../../dashboard.php?page=guru&pesan=error");
     exit;
 }
 
@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
         WHERE id_guru = $id
     ");
 
-    header("Location: ../../index.php?page=guru&pesan=update");
+    header("Location: ../../dashboard.php?page=guru&pesan=update");
     exit;
 }
 ?>
@@ -77,7 +77,7 @@ if (isset($_POST['update'])) {
                         <input type="text" name="password" class="form-control" value="<?= $data['password'] ?>" required>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="../../index.php?page=guru" class="btn btn-secondary">Kembali</a>
+                        <a href="../../dashboard.php?page=guru" class="btn btn-secondary">Kembali</a>
                         <button type="submit" name="update" class="btn btn-success">Update</button>
                     </div>
                 </form>

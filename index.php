@@ -191,8 +191,8 @@ session_start();
                             }
                             break;
                         case 'mpk':
-                            if(file_exists('mpk.php')) {
-                                include 'mpk.php';
+                            if(file_exists('admin/mpk/mpk.php')) {
+                                include 'admin/mpk/mpk.php';
                             } else {
                                 echo '<div class="error-message">File mpk.php tidak ditemukan</div>';
                             }

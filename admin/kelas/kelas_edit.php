@@ -1,7 +1,7 @@
 <?php
 include "../../koneksi.php";
 if (!isset($_GET['id'])) {
-    header("Location: index.php?page=jurusan");
+    header("Location: dashboard.php?page=jurusan");
     exit;
 }
 
@@ -13,7 +13,7 @@ if (isset($_POST['update'])) {
     $singkatan    = $_POST['singkatan'];
 
     mysqli_query($koneksi, "UPDATE jurusan SET nama_jurusan='$nama_jurusan', singkatan='$singkatan' WHERE id_jurusan=$id");
-    header("Location: ../index.php?page=jurusan&pesan=edit");
+    header("Location: ../dashboard.php?page=jurusan&pesan=edit");
     exit;
 }
 ?>
@@ -31,6 +31,6 @@ if (isset($_POST['update'])) {
             <input type="text" name="singkatan" maxlength="5" class="form-control" value="<?= $data['singkatan'] ?>" required>
         </div>
         <button type="submit" name="update" class="btn btn-success">Update</button>
-        <a href="../index.php?page=kelas" class="btn btn-secondary">Kembali</a>
+        <a href="../dashboard.php?page=kelas" class="btn btn-secondary">Kembali</a>
     </form>
 </div>

@@ -24,7 +24,7 @@ $sql = "INSERT INTO siswa (nama_siswa, no_absen, tgl_lahir, alamat, telp, id_kel
 
     mysqli_query($koneksi, $sql) or die("Error query: " . mysqli_error($koneksi));
 
-    header("Location: ../../index.php?page=siswa&pesan=tambah");
+    header("Location: ../../dashboard.php?page=siswa&pesan=tambah");
     exit;
 }
 
@@ -134,7 +134,7 @@ $sql = "INSERT INTO siswa (nama_siswa, no_absen, tgl_lahir, alamat, telp, id_kel
 
                 <!-- Tombol -->
                 <div class="form-actions">
-                    <a href="../../index.php?page=siswa" class="btn btn-secondary">
+                    <a href="../../dashboard.php?page=siswa" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i>
                         Kembali
                     </a>

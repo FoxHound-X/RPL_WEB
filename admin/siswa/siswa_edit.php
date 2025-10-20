@@ -3,7 +3,7 @@ include "../../koneksi.php";
 
 // Cek jika parameter ID tidak ada
 if (!isset($_GET['id'])) {
-    header("Location: ../../index.php?page=siswa&pesan=error");
+    header("Location: ../../dashboard.php?page=siswa&pesan=error");
     exit;
 }
 
@@ -52,7 +52,7 @@ if (isset($_POST['update'])) {
 
     mysqli_query($koneksi, $update) or die("Update error: " . mysqli_error($koneksi));
 
-    header("Location: ../../index.php?page=siswa&pesan=update");
+    header("Location: ../../dashboard.php?page=siswa&pesan=update");
     exit;
 }
 ?>
@@ -112,7 +112,7 @@ if (isset($_POST['update'])) {
                     </select>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a href="../../index.php?page=siswa" class="btn btn-secondary">Kembali</a>
+                    <a href="../../dashboard.php?page=siswa" class="btn btn-secondary">Kembali</a>
                     <button type="submit" name="update" class="btn btn-success">Update</button>
                 </div>
             </form>

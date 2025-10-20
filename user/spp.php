@@ -5,7 +5,10 @@ include("koneksi.php");
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "SELECT *");
+    $result = mysqli_query($koneksi, "SELECT * FROM jurusan 
+                                      WHERE nama_jurusan LIKE '%$cari%' 
+                                         OR singkatan LIKE '%$cari%' 
+                                      ORDER BY id_jurusan DESC");
 } else {
     $result = mysqli_query($koneksi, "SELECT * FROM jurusan ORDER BY id_jurusan DESC");
 }
