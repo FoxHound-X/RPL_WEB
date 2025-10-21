@@ -5,26 +5,28 @@ include("koneksi.php");
 $cari = "";
 if (isset($_GET['cari']) && $_GET['cari'] != "") {
     $cari = $_GET['cari'];
-    $result = mysqli_query($koneksi, "SELECT * FROM jurusan 
-                                      WHERE nama_jurusan LIKE '%$cari%' 
-                                         OR singkatan LIKE '%$cari%' 
-                                      ORDER BY id_jurusan DESC");
+    $result = mysqli_query($koneksi, "SELECT * FROM pembayaran
+                                      WHERE id_pembayaran LIKE '%$cari%' 
+                                         OR id_siswa LIKE '%$cari%' 
+                                         OR bulan LIKE '%$cari%'
+                                         OR metode LIKE '%$cari%'
+                                      ORDER BY id_pembayaran DESC");
 } else {
-    $result = mysqli_query($koneksi, "SELECT * FROM jurusan ORDER BY id_jurusan DESC");
+    $result = mysqli_query($koneksi, "SELECT * FROM pembayaran ORDER BY id_pembayaran DESC");
 }
 ?>
 
-<!-- jurusan.php -->
+<!-- pembayaran.php -->
 <div class="card">
-    <h2>📚 Data Jurusan</h2>
+    <h2>💰 Data Pembayaran</h2>
 
     <!-- Notifikasi -->
     <?php if (isset($_GET['pesan'])): ?>
         <div class="alert alert-success">
             <?php 
-            if ($_GET['pesan'] == 'tambah') echo "✅ Data jurusan berhasil ditambahkan!";
-            if ($_GET['pesan'] == 'edit') echo "✅ Data jurusan berhasil diperbaharui!";
-            if ($_GET['pesan'] == 'hapus') echo "✅ Data jurusan berhasil dihapus!";
+            if ($_GET['pesan'] == 'tambah') echo "✅ Data pembayaran berhasil ditambahkan!";
+            if ($_GET['pesan'] == 'edit') echo "✅ Data pembayaran berhasil diperbaharui!";
+            if ($_GET['pesan'] == 'hapus') echo "✅ Data pembayaran berhasil dihapus!";
             ?>
         </div>
     <?php endif; ?>
@@ -32,19 +34,24 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
     <!-- Pencarian + Tombol Tambah -->
     <div class="search-add">
         <form method="get" action="">
-            <input type="hidden" name="page" value="jurusan">
-            <input type="text" name="cari" placeholder="Cari jurusan..." value="<?= htmlspecialchars($cari) ?>">
+            <input type="hidden" name="page" value="pembayaran">
+            <input type="text" name="cari" placeholder="Cari pembayaran..." value="<?= htmlspecialchars($cari) ?>">
             <button type="submit" class="btn-search"><i class="fas fa-search"></i> Cari</button>
         </form>
-        <a href="admin/jurusan_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Jurusan</a>
+        <a href="admin/pembayaran_tambah.php" class="btn-add"><i class="fas fa-plus"></i> Tambah Pembayaran</a>
     </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Jurusan</th>
-                <th>Singkatan</th>
+                <th>ID Pembayaran</th>
+                <th>ID Siswa</th>
+                <th>Tanggal Pembayaran</th>
+                <th>Bulan</th>
+                <th>Nominal</th>
+                <th>Metode</th>
+                <th>ID Pegawai</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -55,19 +62,24 @@ if (isset($_GET['cari']) && $_GET['cari'] != "") {
             while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $row['nama_jurusan'] ?></td>
-                    <td><?= $row['singkatan'] ?></td>
+                    <td><?= $row['id_pembayaran'] ?></td>
+                    <td><?= $row['id_siswa'] ?></td>
+                    <td><?= $row['tgl_pembayaran'] ?></td>
+                    <td><?= $row['bulan'] ?></td>
+                    <td><?= $row['nominal'] ?></td>
+                    <td><?= $row['metode'] ?></td>
+                    <td><?= $row['id_pegawai'] ?></td>
                     <td>
-                        <a href="admin/jurusan_edit.php?id=<?= $row['id_jurusan'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
-                        <a href="admin/jurusan_hapus.php?id=<?= $row['id_jurusan'] ?>" 
+                        <a href="admin/pembayaran_edit.php?id=<?= $row['id_pembayaran'] ?>" class="btn-edit"><i class="fas fa-edit"></i></a>
+                        <a href="admin/pembayaran_hapus.php?id=<?= $row['id_pembayaran'] ?>" 
                            class="btn-delete" 
-                           onclick="return confirm('Yakin ingin menghapus jurusan ini?')"><i class="fas fa-trash"></i></a>
+                           onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
         <?php } 
         } else { ?>
             <tr>
-                <td colspan="4" class="text-center text-muted">⚠️ Data tidak ditemukan</td>
+                <td colspan="9" class="text-center text-muted">⚠️ Data tidak ditemukan</td>
             </tr>
         <?php } ?>
         </tbody>
