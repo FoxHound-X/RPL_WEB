@@ -26,21 +26,6 @@ Seperti Absensi, Jurnal Guru, dan lain nya
 
 
 
-## Color Reference
-
-<div align="center">
-
-| **Name** | **Preview** | **Hex Code** |
-|:--------------------------|:-------------:|:-------------:|
-| **Difficulty Color 1** | ![#D08770](https://via.placeholder.com/25/D08770/FFFFFF?text=+) | `#D08770` |
-| **Difficulty Color 2** | ![#EBCB8B](https://via.placeholder.com/25/EBCB8B/FFFFFF?text=+) | `#EBCB8B` |
-| **Difficulty Color 3** | ![#00B48A](https://via.placeholder.com/25/00B48A/FFFFFF?text=+) | `#00B48A` |
-| **Background Color** | ![#2E3440](https://via.placeholder.com/25/2E3440/FFFFFF?text=+) | `#2E3440` |
-| **Card Color** | ![#3B4252](https://via.placeholder.com/25/3B4252/FFFFFF?text=+) | `#3B4252` |
-| **Title Color** | ![#ECEFF4](https://via.placeholder.com/25/ECEFF4/000000?text=+) | `#ECEFF4` |
-| **Subtitle Color** | ![#4F5D75](https://via.placeholder.com/25/4F5D75/FFFFFF?text=+) | `#4F5D75` |
-| **Description Color** | ![#D8DEE9](https://via.placeholder.com/25/D8DEE9/000000?text=+) | `#D8DEE9` |
-
 </div>
 
 
@@ -56,7 +41,7 @@ Seperti Absensi, Jurnal Guru, dan lain nya
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
 </div>
 
-### ⚙️ Server-Side
+### Server-Side
 <div align="left">
   <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP" />
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
